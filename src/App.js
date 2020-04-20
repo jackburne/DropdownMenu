@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { CSSTransition } from 'react-transition-group';
 // Importing all the svg's that we are going to need from inside the ./icons folder
 // We import them as ReactComponent's and name then with CamelCase, we can then
 // use them in a JSX element (for example, to use ArrowIcon, we would do: { <ArrowIcon> } )
@@ -63,6 +64,8 @@ function NavItem(props) {
 }
 
 function DropdownMenu() {
+
+  const [activeMenu, setActiveMenu] = useState('main');
   // As we want this to be a dropdown menu with items within it, we declare the Dropdown menu item component
   // as a component WITHIN the dropdown menu itself
   function DropDownItem(props) {
@@ -81,11 +84,19 @@ function DropdownMenu() {
   // After declaring the dropdownItem component we can return a div with as dropdownItems we want within it
   return (
     <div className="dropdown">
-      <DropDownItem>My Profile</DropDownItem>
-      <DropDownItem
-        leftIcon={<CogIcon />}
-        rightIcon={<ChevronIcon />}>
-      </DropDownItem>
+      <CSSTransition 
+        in={activeMenu === 'main'}
+        unmountOnExit timeout={500}
+        classNames="menu-primary"
+        >
+          <div className="menu">
+            <DropDownItem>My Profile</DropDownItem>
+            <DropDownItem
+             leftIcon={<CogIcon />}
+             rightIcon={<ChevronIcon />}>
+            </DropDownItem>
+          </div>
+      </CSSTransition>
     </div>
   )
 }
