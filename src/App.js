@@ -63,7 +63,8 @@ function NavItem(props) {
 }
 
 function DropdownMenu() {
-
+  // As we want this to be a dropdown menu with items within it, we declare the Dropdown menu item component
+  // as a component WITHIN the dropdown menu itself
   function DropDownItem(props) {
     return (
       <a href="#" className="menu-item">
@@ -77,6 +78,7 @@ function DropdownMenu() {
     )
   }
 
+  // After declaring the dropdownItem component we can return a div with as dropdownItems we want within it
   return (
     <div className="dropdown">
       <DropDownItem>My Profile</DropDownItem>
